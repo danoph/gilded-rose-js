@@ -10,6 +10,16 @@ export class Item {
   }
 }
 
+//class FancyItem extends Item{
+  //constructor(name, sellIn, quality) {
+    //super(name, sellIn, quality);
+  //}
+
+  //updateQuality() {
+    //this.quality = qualityToUpdateTo;
+  //}
+//}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -20,6 +30,9 @@ export class GildedRose {
   updateQuality() {
 
     for (let i = 0; i < this.items.length; i++) {
+      //const item = new FancyItem(this.items[i].name, this.items[i].sellIn, this.items[i].quality);
+      //item.updateQuality();
+
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if ((this.items[i].name != 'Sulfuras, Hand of Ragnaros') && (this.items[i].name != 'Conjured Mana Cake')) {
@@ -78,5 +91,9 @@ export class GildedRose {
     }
 
     return this.items;
+  }
+
+  printItems() {
+    console.log(JSON.stringify(this.items, null, 2));
   }
 }

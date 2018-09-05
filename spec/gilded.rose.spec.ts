@@ -81,12 +81,10 @@ describe('GildedRose', () => {
           })
 
           it('quality should be 2', () => {
-            //console.log('subject.items', JSON.stringify(subject.items, null, 2));
             subject.updateQuality();
 
             expect(conjuredManaCake.sellIn).toEqual(-2)
             expect(conjuredManaCake.quality).toEqual(2)
-            //console.log('subject.items', JSON.stringify(subject.items, null, 2));
           })
         })
 
