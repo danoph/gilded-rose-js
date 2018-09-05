@@ -79,6 +79,7 @@ export class GildedRose {
           }
         }
       }
+
       this.decreaseSellInByOne(item);
 
       if (item.sellIn < 0) {

@@ -104,6 +104,38 @@ describe('GildedRose', () => {
     })
 
     describe('aged brie', () => {
+      describe('quality is 45', () => {
+        beforeEach(() => {
+          agedBrie.quality = 45
+        })
+
+        describe('sellIn date is 4', () => {
+          beforeEach(() => {
+            agedBrie.sellIn = 4;
+          })
+
+          it('increases quality to 46', () => {
+            subject.updateQuality();
+
+            expect(agedBrie.sellIn).toEqual(3)
+            expect(agedBrie.quality).toEqual(46)
+          })
+        })
+
+        describe('sellIn date is -1', () => {
+          beforeEach(() => {
+            agedBrie.sellIn = -1;
+          })
+
+          it('increases quality to 47', () => {
+            subject.updateQuality();
+
+            expect(agedBrie.sellIn).toEqual(-2)
+            expect(agedBrie.quality).toEqual(47)
+          })
+        })
+      })
+
       describe('has quality of 50', () => {
         beforeEach(() => {
           agedBrie.quality = 50
