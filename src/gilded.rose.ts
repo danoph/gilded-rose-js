@@ -60,7 +60,7 @@ export class GildedRose {
             } else {
               if(item.name == 'Conjured Mana Cake') {
                 if(item.sellIn < 0) {
-                  item.quality -=4
+                  item.quality -= 4;
                 } else {
                   if(item.quality >= 2) {
                     item.quality -= 2
