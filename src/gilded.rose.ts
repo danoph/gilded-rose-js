@@ -11,13 +11,13 @@ export class Item {
 }
 
 //class FancyItem extends Item{
-  //constructor(name, sellIn, quality) {
-    //super(name, sellIn, quality);
-  //}
+//constructor(name, sellIn, quality) {
+//super(name, sellIn, quality);
+//}
 
-  //updateQuality() {
-    //this.quality = qualityToUpdateTo;
-  //}
+//updateQuality() {
+//this.quality = qualityToUpdateTo;
+//}
 //}
 
 export class GildedRose {
@@ -25,6 +25,17 @@ export class GildedRose {
 
   constructor(items = []) {
     this.items = items;
+  }
+
+  //class TheRules {
+    //increaseQuality: function(){[>logic here<]},
+      //decreaseQuality: function(){[>logic here<]},
+  //}
+
+  increaseQualityByOne(item) {
+    if (item.quality < 50) {
+      item.quality += 1;
+    }
   }
 
   updateQuality() {
@@ -58,14 +69,10 @@ export class GildedRose {
           item.quality += 1;
           if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality += 1;
-              }
+              this.increaseQualityByOne(item);
             }
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality += 1;
-              }
+              this.increaseQualityByOne(item);
             }
           }
         }
@@ -85,9 +92,7 @@ export class GildedRose {
             item.quality -= item.quality;
           }
         } else {
-          if (item.quality < 50) {
-            item.quality += 1;
-          }
+          this.increaseQualityByOne(item);
         }
       }
     }
