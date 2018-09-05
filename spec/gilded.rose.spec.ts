@@ -182,7 +182,7 @@ describe('GildedRose', () => {
           backstagePasses.sellIn = -1
         })
 
-        it('increases quality by 2', () => {
+        it('sets quality to 0', () => {
           subject.updateQuality();
 
           expect(backstagePasses.sellIn).toEqual(-2)
