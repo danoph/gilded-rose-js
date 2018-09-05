@@ -75,9 +75,32 @@ describe('GildedRose', () => {
           conjuredManaCake.sellIn = -1
         })
 
-        it('decreases quality by 4', () => {
-          subject.updateQuality();
-          expect(conjuredManaCake.quality).toEqual(2)
+        describe('and quality is 6', () => {
+          beforeEach(() => {
+            conjuredManaCake.quality = 6;
+          })
+
+          it('quality should be 2', () => {
+            //console.log('subject.items', JSON.stringify(subject.items, null, 2));
+            subject.updateQuality();
+
+            expect(conjuredManaCake.sellIn).toEqual(-2)
+            expect(conjuredManaCake.quality).toEqual(2)
+            //console.log('subject.items', JSON.stringify(subject.items, null, 2));
+          })
+        })
+
+        describe('and quality is 0', () => {
+          beforeEach(() => {
+            conjuredManaCake.quality = 0;
+          })
+
+          it('does not decrease quality below 0', () => {
+            subject.updateQuality();
+
+            expect(conjuredManaCake.sellIn).toEqual(-2)
+            expect(conjuredManaCake.quality).toEqual(0)
+          })
         })
       })
     })
