@@ -28,8 +28,8 @@ export class GildedRose {
   }
 
   //class TheRules {
-    //increaseQuality: function(){[>logic here<]},
-      //decreaseQuality: function(){[>logic here<]},
+  //increaseQuality: function(){[>logic here<]},
+  //decreaseQuality: function(){[>logic here<]},
   //}
 
   increaseQualityByOne(item) {
@@ -38,11 +38,15 @@ export class GildedRose {
     }
   }
 
+  decreaseSellInByOne(item) {
+    if (item.name != 'Sulfuras, Hand of Ragnaros') {
+      item.sellIn -= 1;
+    }
+  }
+
   updateQuality() {
 
-    for (let i = 0; i < this.items.length; i++) {
-
-      const item = this.items[i];
+    for (let item of this.items) {
       //const item = new FancyItem(item.name, item.sellIn, item.quality);
       //item.updateQuality();
 
@@ -65,21 +69,18 @@ export class GildedRose {
           }
         }
       } else {
-        if (item.quality < 50) {
-          item.quality += 1;
-          if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.sellIn < 11) {
-              this.increaseQualityByOne(item);
-            }
-            if (item.sellIn < 6) {
-              this.increaseQualityByOne(item);
-            }
+        this.increaseQualityByOne(item);
+        if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+          if (item.sellIn < 11) {
+            this.increaseQualityByOne(item);
+          }
+          if (item.sellIn < 6) {
+            this.increaseQualityByOne(item);
           }
         }
       }
-      if (item.name != 'Sulfuras, Hand of Ragnaros') {
-        item.sellIn -= 1;
-      }
+      this.decreaseSellInByOne(item);
+
       if (item.sellIn < 0) {
         if (item.name != 'Aged Brie') {
           if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
