@@ -42,7 +42,15 @@ export class GildedRose {
           this.increaseQualityByOne(item);
         }
       } else {
-        if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+          this.increaseQualityByOne(item);
+          if (item.sellIn < 11) {
+            this.increaseQualityByOne(item);
+          }
+          if (item.sellIn < 6) {
+            this.increaseQualityByOne(item);
+          }
+        } else {
           if (item.quality > 0) {
             if ((item.name != 'Sulfuras, Hand of Ragnaros') && (item.name != 'Conjured Mana Cake')) {
               item.quality -= 1;
@@ -58,16 +66,6 @@ export class GildedRose {
                   }
                 }
               }
-            }
-          }
-        } else {
-          if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-            this.increaseQualityByOne(item);
-            if (item.sellIn < 11) {
-              this.increaseQualityByOne(item);
-            }
-            if (item.sellIn < 6) {
-              this.increaseQualityByOne(item);
             }
           }
         }
