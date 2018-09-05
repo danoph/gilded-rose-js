@@ -55,19 +55,19 @@ export class GildedRose {
           }
         } else {
           if (item.quality > 0) {
-            if ((item.name != 'Sulfuras, Hand of Ragnaros') && (item.name != 'Conjured Mana Cake')) {
-              item.quality -= 1;
-            } else {
-              if(item.name == 'Conjured Mana Cake') {
-                if(item.sellIn < 0) {
-                  item.quality -= 4;
+            if(item.name == 'Conjured Mana Cake') {
+              if(item.sellIn < 0) {
+                item.quality -= 4;
+              } else {
+                if(item.quality >= 2) {
+                  item.quality -= 2
                 } else {
-                  if(item.quality >= 2) {
-                    item.quality -= 2
-                  } else {
-                    item.quality = 0;
-                  }
+                  item.quality = 0;
                 }
+              }
+            } else {
+              if (item.name != 'Sulfuras, Hand of Ragnaros')  {
+                item.quality -= 1;
               }
             }
           }

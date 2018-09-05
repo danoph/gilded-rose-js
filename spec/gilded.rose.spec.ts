@@ -101,6 +101,25 @@ describe('GildedRose', () => {
           })
         })
       })
+
+      //describe('has sellIn date of 0', () => {
+        //beforeEach(() => {
+          //conjuredManaCake.sellIn = 0
+        //})
+
+        //describe('and quality is 6', () => {
+          //beforeEach(() => {
+            //conjuredManaCake.quality = 6;
+          //})
+
+          //it('does not decrease quality below 0', () => {
+            //subject.updateQuality();
+
+            //expect(conjuredManaCake.sellIn).toEqual(-1)
+            //expect(conjuredManaCake.quality).toEqual(0)
+          //})
+        //})
+      //})
     })
 
     describe('aged brie', () => {
