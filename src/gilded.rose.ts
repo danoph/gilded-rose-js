@@ -10,6 +10,27 @@ export class Item {
   }
 }
 
+class AgedBrie {
+
+  updateAgedBrie(item) {
+    this.increaseQualityByOne(item);
+    this.decreaseSellInByOne(item);
+    if(item.sellIn < 0) {
+      this.increaseQualityByOne(item);
+    }
+  }
+
+  increaseQualityByOne(item) {
+    if (item.quality < 50) {
+      item.quality += 1;
+    }
+  }
+
+  decreaseSellInByOne(item) {
+    item.sellIn -= 1;
+  }
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -29,13 +50,6 @@ export class GildedRose {
     }
   }
 
-  updateAgedBrie(item) {
-    this.increaseQualityByOne(item);
-    this.decreaseSellInByOne(item);
-    if(item.sellIn < 0) {
-      this.increaseQualityByOne(item);
-    }
-  }
 
   updateBackStagePasses(item) {
     this.increaseQualityByOne(item);
@@ -81,7 +95,8 @@ export class GildedRose {
 
     for (let item of this.items) {
       if (item.name == 'Aged Brie') {
-        this.updateAgedBrie(item);
+        const agedBrie = new AgedBrie();
+        agedBrie.updateAgedBrie(item);
       } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
         this.updateBackStagePasses(item);
       } else if(item.name == 'Conjured Mana Cake') {
