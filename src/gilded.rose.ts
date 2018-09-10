@@ -121,20 +121,7 @@ export class GildedRose {
     this.items = items;
   }
 
-  increaseQualityByOne(item) {
-    if (item.quality < 50) {
-      item.quality += 1;
-    }
-  }
-
-  decreaseSellInByOne(item) {
-    if (item.name != 'Sulfuras, Hand of Ragnaros') {
-      item.sellIn -= 1;
-    }
-  }
-
   updateQuality() {
-
     for (let item of this.items) {
       if (item.name == 'Aged Brie') {
         const agedBrie = new AgedBrie(item);
@@ -142,7 +129,6 @@ export class GildedRose {
       } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
         const backStagePass = new BackStagePass(item);
         backStagePass.updateBackStagePass();
-
       } else if(item.name == 'Conjured Mana Cake') {
         const conjuredManaCake = new ConjuredManaCake(item);
         conjuredManaCake.updateConjuredManaCake();
