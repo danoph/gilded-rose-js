@@ -37,6 +37,20 @@ export class GildedRose {
     }
   }
 
+  updateBackStagePasses(item) {
+    this.increaseQualityByOne(item);
+    if (item.sellIn < 11) {
+      this.increaseQualityByOne(item);
+    }
+    if (item.sellIn < 6) {
+      this.increaseQualityByOne(item);
+    }
+    if (item.sellIn <= 0) {
+      item.quality -= item.quality;
+    }
+
+  }
+
   updateQuality() {
 
     for (let item of this.items) {
@@ -44,16 +58,7 @@ export class GildedRose {
         this.updateAgedBrie(item);
       } else {
         if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-          this.increaseQualityByOne(item);
-          if (item.sellIn < 11) {
-            this.increaseQualityByOne(item);
-          }
-          if (item.sellIn < 6) {
-            this.increaseQualityByOne(item);
-          }
-          if (item.sellIn <= 0) {
-            item.quality -= item.quality;
-          }
+          this.updateBackStagePasses(item);
         } else {
           if (item.quality > 0) {
             if(item.name == 'Conjured Mana Cake') {
