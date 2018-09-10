@@ -29,18 +29,19 @@ export class GildedRose {
     }
   }
 
+  updateAgedBrie(item) {
+    this.increaseQualityByOne(item);
+    this.decreaseSellInByOne(item);
+    if(item.sellIn < 0) {
+      this.increaseQualityByOne(item);
+    }
+  }
+
   updateQuality() {
 
     for (let item of this.items) {
-      //const item = new FancyItem(item.name, item.sellIn, item.quality);
-      //item.updateQuality();
-
       if (item.name == 'Aged Brie') {
-        this.increaseQualityByOne(item);
-        this.decreaseSellInByOne(item);
-        if(item.sellIn < 0) {
-          this.increaseQualityByOne(item);
-        }
+        this.updateAgedBrie(item);
       } else {
         if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
           this.increaseQualityByOne(item);

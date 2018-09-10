@@ -14,7 +14,7 @@ describe('GildedRose', () => {
       dexterityVest = new Item("+5 Dexterity Vest", 10, 20);
       conjuredManaCake = new Item("Conjured Mana Cake", 3, 6);
       backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 15);
-      agedBrie = new Item("Aged Brie", 4, 11)
+      agedBrie = new Item("Aged Brie", 4, 11);
       sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
 
       subject = new GildedRose([
