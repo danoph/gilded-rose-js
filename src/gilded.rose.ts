@@ -63,6 +63,14 @@ export class GildedRose {
     }
   }
 
+  updateNormalItem(item) {
+    item.quality -= 1;
+
+    if(item.sellIn <= 0) {
+      item.quality -= 1;
+    }
+  }
+
   updateQuality() {
 
     for (let item of this.items) {
@@ -77,11 +85,7 @@ export class GildedRose {
               this.updateConjuredManaCake(item);
             } else {
               if (item.name != 'Sulfuras, Hand of Ragnaros')  {
-                item.quality -= 1;
-
-                if(item.sellIn <= 0) {
-                  item.quality -= 1;
-                }
+                this.updateNormalItem(item);
               }
             }
           }
