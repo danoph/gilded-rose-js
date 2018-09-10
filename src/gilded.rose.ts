@@ -61,6 +61,31 @@ class BackStagePass {
   }
 }
 
+class ConjuredManaCake {
+
+  constructor(private _item) {}
+
+  updateConjuredManaCake() {
+    if (this._item.quality > 0) {
+      if(this._item.sellIn < 0) {
+        this._item.quality -= 4;
+      } else {
+        if(this._item.quality >= 2) {
+          this._item.quality -= 2
+        } else {
+          this._item.quality = 0;
+        }
+      }
+    }
+    this.decreaseSellInByOne();
+  }
+
+  decreaseSellInByOne() {
+    this._item.sellIn -= 1;
+  }
+
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -80,22 +105,6 @@ export class GildedRose {
     }
   }
 
-
-
-  updateConjuredManaCake(item) {
-    if (item.quality > 0) {
-      if(item.sellIn < 0) {
-        item.quality -= 4;
-      } else {
-        if(item.quality >= 2) {
-          item.quality -= 2
-        } else {
-          item.quality = 0;
-        }
-      }
-    }
-    this.decreaseSellInByOne(item);
-  }
 
   updateNormalItem(item) {
     if (item.quality > 0) {
@@ -119,7 +128,8 @@ export class GildedRose {
         backStagePass.updateBackStagePass();
 
       } else if(item.name == 'Conjured Mana Cake') {
-        this.updateConjuredManaCake(item);
+        const conjuredManaCake = new ConjuredManaCake(item);
+        conjuredManaCake.updateConjuredManaCake();
       } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
         // do nothing
       } else {
