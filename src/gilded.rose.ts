@@ -52,22 +52,26 @@ export class GildedRose {
   }
 
   updateConjuredManaCake(item) {
-    if(item.sellIn < 0) {
-      item.quality -= 4;
-    } else {
-      if(item.quality >= 2) {
-        item.quality -= 2
+    if (item.quality > 0) {
+      if(item.sellIn < 0) {
+        item.quality -= 4;
       } else {
-        item.quality = 0;
+        if(item.quality >= 2) {
+          item.quality -= 2
+        } else {
+          item.quality = 0;
+        }
       }
     }
   }
 
   updateNormalItem(item) {
-    item.quality -= 1;
-
-    if(item.sellIn <= 0) {
+    if (item.quality > 0) {
       item.quality -= 1;
+
+      if(item.sellIn <= 0) {
+        item.quality -= 1;
+      }
     }
   }
 
@@ -80,13 +84,12 @@ export class GildedRose {
         if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
           this.updateBackStagePasses(item);
         } else {
-          if (item.quality > 0) {
-            if(item.name == 'Conjured Mana Cake') {
-              this.updateConjuredManaCake(item);
-            } else {
-              if (item.name != 'Sulfuras, Hand of Ragnaros')  {
-                this.updateNormalItem(item);
-              }
+          // checking quality for everytinng EXCEPT aged brie and backstage passes
+          if(item.name == 'Conjured Mana Cake') {
+            this.updateConjuredManaCake(item);
+          } else {
+            if (item.name != 'Sulfuras, Hand of Ragnaros')  {
+              this.updateNormalItem(item);
             }
           }
         }
