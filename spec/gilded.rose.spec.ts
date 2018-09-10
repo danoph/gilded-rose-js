@@ -25,7 +25,7 @@ describe('GildedRose', () => {
         sulfuras,
         agedBrie,
         conjuredManaCake,
-        //conjuredLavaCake
+        conjuredLavaCake
       ]);
     })
 
@@ -47,8 +47,8 @@ describe('GildedRose', () => {
       expect(conjuredManaCake.sellIn).toEqual(2);
       expect(conjuredManaCake.quality).toEqual(4);
 
-      //expect(conjuredLavaCake.sellIn).toEqual(2);
-      //expect(conjuredLavaCake.quality).toEqual(4);
+      expect(conjuredLavaCake.sellIn).toEqual(1);
+      expect(conjuredLavaCake.quality).toEqual(5);
     });
 
     describe('dexterity vest', () => {
@@ -128,21 +128,53 @@ describe('GildedRose', () => {
       //})
     })
 
-    //describe('conjured lava cake', () => {
-      //describe('has quality of 1', () => {
-        //beforeEach(() => {
-          //conjuredLavaCake.quality = 1
-        //})
+    describe('conjured lava cake', () => {
+      describe('has quality of 1', () => {
+        beforeEach(() => {
+          conjuredLavaCake.quality = 1
+        })
 
-        //it('does not decrease quality below 0', () => {
-          //subject.updateQuality();
-          //expect(conjuredLavaCake.quality).toEqual(0)
-        //})
-      //})
+        it('does not decrease quality below 0', () => {
+          subject.updateQuality();
+          expect(conjuredLavaCake.quality).toEqual(0)
+        })
+      })
 
-      //describe('has sellIn date of -1', () => {
+      describe('has sellIn date of -1', () => {
+        beforeEach(() => {
+          conjuredLavaCake.sellIn = -1
+        })
+
+        describe('and quality is 6', () => {
+          beforeEach(() => {
+            conjuredLavaCake.quality = 6;
+          })
+
+          it('quality should be 2', () => {
+            subject.updateQuality();
+
+            expect(conjuredLavaCake.sellIn).toEqual(-2)
+            expect(conjuredLavaCake.quality).toEqual(2)
+          })
+        })
+
+        describe('and quality is 0', () => {
+          beforeEach(() => {
+            conjuredLavaCake.quality = 0;
+          })
+
+          it('does not decrease quality below 0', () => {
+            subject.updateQuality();
+
+            expect(conjuredLavaCake.sellIn).toEqual(-2)
+            expect(conjuredLavaCake.quality).toEqual(0)
+          })
+        })
+      })
+
+      //describe('has sellIn date of 0', () => {
         //beforeEach(() => {
-          //conjuredLavaCake.sellIn = -1
+          //conjuredLavaCake.sellIn = 0
         //})
 
         //describe('and quality is 6', () => {
@@ -150,47 +182,15 @@ describe('GildedRose', () => {
             //conjuredLavaCake.quality = 6;
           //})
 
-          //it('quality should be 2', () => {
-            //subject.updateQuality();
-
-            //expect(conjuredLavaCake.sellIn).toEqual(-2)
-            //expect(conjuredLavaCake.quality).toEqual(2)
-          //})
-        //})
-
-        //describe('and quality is 0', () => {
-          //beforeEach(() => {
-            //conjuredLavaCake.quality = 0;
-          //})
-
           //it('does not decrease quality below 0', () => {
             //subject.updateQuality();
 
-            //expect(conjuredLavaCake.sellIn).toEqual(-2)
+            //expect(conjuredLavaCake.sellIn).toEqual(-1)
             //expect(conjuredLavaCake.quality).toEqual(0)
           //})
         //})
       //})
-
-      ////describe('has sellIn date of 0', () => {
-        ////beforeEach(() => {
-          ////conjuredLavaCake.sellIn = 0
-        ////})
-
-        ////describe('and quality is 6', () => {
-          ////beforeEach(() => {
-            ////conjuredLavaCake.quality = 6;
-          ////})
-
-          ////it('does not decrease quality below 0', () => {
-            ////subject.updateQuality();
-
-            ////expect(conjuredLavaCake.sellIn).toEqual(-1)
-            ////expect(conjuredLavaCake.quality).toEqual(0)
-          ////})
-        ////})
-      ////})
-    //})
+    })
 
     describe('aged brie', () => {
       describe('quality is 45', () => {

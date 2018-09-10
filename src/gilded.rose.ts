@@ -61,11 +61,11 @@ class BackStagePass {
   }
 }
 
-class ConjuredManaCake {
+class ConjuredItem {
 
   constructor(private _item) {}
 
-  updateConjuredManaCake() {
+  updateConjuredItem() {
     if (this._item.quality > 0) {
       if(this._item.sellIn < 0) {
         this._item.quality -= 4;
@@ -83,8 +83,8 @@ class ConjuredManaCake {
   decreaseSellInByOne() {
     this._item.sellIn -= 1;
   }
-
 }
+
 
 class NormalItem{
   constructor(private _item) {}
@@ -129,9 +129,9 @@ export class GildedRose {
       } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
         const backStagePass = new BackStagePass(item);
         backStagePass.updateBackStagePass();
-      } else if(item.name == 'Conjured Mana Cake') {
-        const conjuredManaCake = new ConjuredManaCake(item);
-        conjuredManaCake.updateConjuredManaCake();
+      } else if(item.name.toLowerCase().indexOf('conjured') > -1) {
+        const conjuredItem = new ConjuredItem(item);
+        conjuredItem.updateConjuredItem();
       } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
         const sulfuras = new Sulfuras(item);
         sulfuras.updateSulfuras();
