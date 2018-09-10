@@ -85,8 +85,7 @@ class ConjuredItem {
   }
 }
 
-
-class NormalItem{
+class NormalItem {
   constructor(private _item) {}
 
   updateNormalItem() {
@@ -102,7 +101,7 @@ class NormalItem{
   }
 
   decreaseSellInByOne() {
-      this._item.sellIn -= 1;
+    this._item.sellIn -= 1;
   }
 }
 
