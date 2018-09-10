@@ -86,6 +86,26 @@ class ConjuredManaCake {
 
 }
 
+class NormalItem{
+  constructor(private _item) {}
+
+  updateNormalItem() {
+
+    if (this._item.quality > 0) {
+      this._item.quality -= 1;
+
+      if(this._item.sellIn <= 0) {
+        this._item.quality -= 1;
+      }
+    }
+    this.decreaseSellInByOne();
+  }
+
+  decreaseSellInByOne() {
+      this._item.sellIn -= 1;
+  }
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -106,16 +126,6 @@ export class GildedRose {
   }
 
 
-  updateNormalItem(item) {
-    if (item.quality > 0) {
-      item.quality -= 1;
-
-      if(item.sellIn <= 0) {
-        item.quality -= 1;
-      }
-    }
-    this.decreaseSellInByOne(item);
-  }
 
   updateQuality() {
 
@@ -133,7 +143,8 @@ export class GildedRose {
       } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
         // do nothing
       } else {
-        this.updateNormalItem(item);
+        const normalItem = new NormalItem(item);
+        normalItem.updateNormalItem();
       }
     }
 
