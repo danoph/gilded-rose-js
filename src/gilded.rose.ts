@@ -10,16 +10,8 @@ export class Item {
   }
 }
 
-class AgedBrie {
-  constructor(private _item) {}
-
-  update() {
-    this.increaseQualityByOne();
-    this.decreaseSellInByOne();
-    if(this._item.sellIn < 0) {
-      this.increaseQualityByOne();
-    }
-  }
+class MyItem {
+  constructor(public _item) {}
 
   increaseQualityByOne() {
     if (this._item.quality < 50) {
@@ -32,12 +24,20 @@ class AgedBrie {
   }
 }
 
-class BackStagePass {
-  constructor(private _item) {}
-
+class AgedBrie extends MyItem {
   update() {
-
     this.increaseQualityByOne();
+    this.decreaseSellInByOne();
+    if(this._item.sellIn < 0) {
+      this.increaseQualityByOne();
+    }
+  }
+}
+
+class BackStagePass extends MyItem {
+  update() {
+    this.increaseQualityByOne();
+
     if (this._item.sellIn < 11) {
       this.increaseQualityByOne();
     }
@@ -49,22 +49,9 @@ class BackStagePass {
     }
     this.decreaseSellInByOne();
   }
-
-  increaseQualityByOne() {
-    if (this._item.quality < 50) {
-      this._item.quality += 1;
-    }
-  }
-
-  decreaseSellInByOne() {
-    this._item.sellIn -= 1;
-  }
 }
 
-class ConjuredItem {
-
-  constructor(private _item) {}
-
+class ConjuredItem extends MyItem {
   update() {
     if (this._item.quality > 0) {
       if(this._item.sellIn < 0) {
@@ -77,17 +64,12 @@ class ConjuredItem {
         }
       }
     }
-    this.decreaseSellInByOne();
-  }
 
-  decreaseSellInByOne() {
-    this._item.sellIn -= 1;
+    this.decreaseSellInByOne();
   }
 }
 
-class NormalItem {
-  constructor(private _item) {}
-
+class NormalItem extends MyItem {
   update() {
 
     if (this._item.quality > 0) {
@@ -97,24 +79,19 @@ class NormalItem {
         this._item.quality -= 1;
       }
     }
-    this.decreaseSellInByOne();
-  }
 
-  decreaseSellInByOne() {
-    this._item.sellIn -= 1;
+    this.decreaseSellInByOne();
   }
 }
 
-class Sulfuras {
-  constructor(private _item) {}
-
+class Sulfuras extends MyItem {
   update() {
     // Do nothing ok hey.
   }
 }
 
 class ItemFactory {
-  generateNewItem(item) {
+  build(item) {
     if (item.name == 'Aged Brie') {
       return new AgedBrie(item);
     } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -140,8 +117,8 @@ export class GildedRose {
     const factory = new ItemFactory();
 
     for (let item of this.items) {
-      const newItem = factory.generateNewItem(item);
-      newItem.update();
+      const myItem = factory.build(item);
+      myItem.update();
     }
 
     return this.items;
