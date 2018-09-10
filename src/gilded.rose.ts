@@ -106,6 +106,14 @@ class NormalItem{
   }
 }
 
+class Sulfuras {
+  constructor(private _item) {}
+
+  updateSulfuras() {
+    // Do nothing ok hey.
+  }
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -125,8 +133,6 @@ export class GildedRose {
     }
   }
 
-
-
   updateQuality() {
 
     for (let item of this.items) {
@@ -141,7 +147,8 @@ export class GildedRose {
         const conjuredManaCake = new ConjuredManaCake(item);
         conjuredManaCake.updateConjuredManaCake();
       } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
-        // do nothing
+        const sulfuras = new Sulfuras(item);
+        sulfuras.updateSulfuras();
       } else {
         const normalItem = new NormalItem(item);
         normalItem.updateNormalItem();
