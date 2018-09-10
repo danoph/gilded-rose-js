@@ -32,6 +32,35 @@ class AgedBrie {
   }
 }
 
+class BackStagePass {
+  constructor(private _item) {}
+
+  updateBackStagePass() {
+
+    this.increaseQualityByOne();
+    if (this._item.sellIn < 11) {
+      this.increaseQualityByOne();
+    }
+    if (this._item.sellIn < 6) {
+      this.increaseQualityByOne();
+    }
+    if (this._item.sellIn <= 0) {
+      this._item.quality -= this._item.quality;
+    }
+    this.decreaseSellInByOne();
+  }
+
+  increaseQualityByOne() {
+    if (this._item.quality < 50) {
+      this._item.quality += 1;
+    }
+  }
+
+  decreaseSellInByOne() {
+    this._item.sellIn -= 1;
+  }
+}
+
 export class GildedRose {
   items: Array<Item>;
 
@@ -52,19 +81,6 @@ export class GildedRose {
   }
 
 
-  updateBackStagePasses(item) {
-    this.increaseQualityByOne(item);
-    if (item.sellIn < 11) {
-      this.increaseQualityByOne(item);
-    }
-    if (item.sellIn < 6) {
-      this.increaseQualityByOne(item);
-    }
-    if (item.sellIn <= 0) {
-      item.quality -= item.quality;
-    }
-    this.decreaseSellInByOne(item);
-  }
 
   updateConjuredManaCake(item) {
     if (item.quality > 0) {
@@ -99,7 +115,9 @@ export class GildedRose {
         const agedBrie = new AgedBrie(item);
         agedBrie.updateAgedBrie();
       } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-        this.updateBackStagePasses(item);
+        const backStagePass = new BackStagePass(item);
+        backStagePass.updateBackStagePass();
+
       } else if(item.name == 'Conjured Mana Cake') {
         this.updateConjuredManaCake(item);
       } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
