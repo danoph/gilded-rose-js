@@ -6,6 +6,7 @@ describe('GildedRose', () => {
   let dexterityVest;
   let agedBrie;
   let conjuredManaCake;
+  let conjuredLavaCake;
   let sulfuras;
   let backstagePasses;
 
@@ -13,6 +14,7 @@ describe('GildedRose', () => {
     beforeEach(() => {
       dexterityVest = new Item("+5 Dexterity Vest", 10, 20);
       conjuredManaCake = new Item("Conjured Mana Cake", 3, 6);
+      conjuredLavaCake = new Item("Conjured Lava Cake", 2, 7);
       backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 15);
       agedBrie = new Item("Aged Brie", 4, 11);
       sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
@@ -22,7 +24,8 @@ describe('GildedRose', () => {
         backstagePasses,
         sulfuras,
         agedBrie,
-        conjuredManaCake
+        conjuredManaCake,
+        //conjuredLavaCake
       ]);
     })
 
@@ -43,6 +46,9 @@ describe('GildedRose', () => {
 
       expect(conjuredManaCake.sellIn).toEqual(2);
       expect(conjuredManaCake.quality).toEqual(4);
+
+      //expect(conjuredLavaCake.sellIn).toEqual(2);
+      //expect(conjuredLavaCake.quality).toEqual(4);
     });
 
     describe('dexterity vest', () => {
@@ -121,6 +127,70 @@ describe('GildedRose', () => {
         //})
       //})
     })
+
+    //describe('conjured lava cake', () => {
+      //describe('has quality of 1', () => {
+        //beforeEach(() => {
+          //conjuredLavaCake.quality = 1
+        //})
+
+        //it('does not decrease quality below 0', () => {
+          //subject.updateQuality();
+          //expect(conjuredLavaCake.quality).toEqual(0)
+        //})
+      //})
+
+      //describe('has sellIn date of -1', () => {
+        //beforeEach(() => {
+          //conjuredLavaCake.sellIn = -1
+        //})
+
+        //describe('and quality is 6', () => {
+          //beforeEach(() => {
+            //conjuredLavaCake.quality = 6;
+          //})
+
+          //it('quality should be 2', () => {
+            //subject.updateQuality();
+
+            //expect(conjuredLavaCake.sellIn).toEqual(-2)
+            //expect(conjuredLavaCake.quality).toEqual(2)
+          //})
+        //})
+
+        //describe('and quality is 0', () => {
+          //beforeEach(() => {
+            //conjuredLavaCake.quality = 0;
+          //})
+
+          //it('does not decrease quality below 0', () => {
+            //subject.updateQuality();
+
+            //expect(conjuredLavaCake.sellIn).toEqual(-2)
+            //expect(conjuredLavaCake.quality).toEqual(0)
+          //})
+        //})
+      //})
+
+      ////describe('has sellIn date of 0', () => {
+        ////beforeEach(() => {
+          ////conjuredLavaCake.sellIn = 0
+        ////})
+
+        ////describe('and quality is 6', () => {
+          ////beforeEach(() => {
+            ////conjuredLavaCake.quality = 6;
+          ////})
+
+          ////it('does not decrease quality below 0', () => {
+            ////subject.updateQuality();
+
+            ////expect(conjuredLavaCake.sellIn).toEqual(-1)
+            ////expect(conjuredLavaCake.quality).toEqual(0)
+          ////})
+        ////})
+      ////})
+    //})
 
     describe('aged brie', () => {
       describe('quality is 45', () => {
