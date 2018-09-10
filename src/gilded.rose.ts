@@ -13,7 +13,7 @@ export class Item {
 class AgedBrie {
   constructor(private _item) {}
 
-  updateAgedBrie() {
+  update() {
     this.increaseQualityByOne();
     this.decreaseSellInByOne();
     if(this._item.sellIn < 0) {
@@ -35,7 +35,7 @@ class AgedBrie {
 class BackStagePass {
   constructor(private _item) {}
 
-  updateBackStagePass() {
+  update() {
 
     this.increaseQualityByOne();
     if (this._item.sellIn < 11) {
@@ -65,7 +65,7 @@ class ConjuredItem {
 
   constructor(private _item) {}
 
-  updateConjuredItem() {
+  update() {
     if (this._item.quality > 0) {
       if(this._item.sellIn < 0) {
         this._item.quality -= 4;
@@ -88,7 +88,7 @@ class ConjuredItem {
 class NormalItem {
   constructor(private _item) {}
 
-  updateNormalItem() {
+  update() {
 
     if (this._item.quality > 0) {
       this._item.quality -= 1;
@@ -108,8 +108,26 @@ class NormalItem {
 class Sulfuras {
   constructor(private _item) {}
 
-  updateSulfuras() {
+  update() {
     // Do nothing ok hey.
+  }
+}
+
+class ItemFactory {
+  constructor(private _item) { }
+
+  generateNewItem() {
+    if (this._item.name == 'Aged Brie') {
+      return new AgedBrie(this._item);
+    } else if (this._item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      return new BackStagePass(this._item);
+    } else if(this._item.name.toLowerCase().indexOf('conjured') > -1) {
+      return new ConjuredItem(this._item);
+    } else if (this._item.name == 'Sulfuras, Hand of Ragnaros')  {
+      return new Sulfuras(this._item);
+    } else {
+      return new NormalItem(this._item);
+    }
   }
 }
 
@@ -122,22 +140,9 @@ export class GildedRose {
 
   updateQuality() {
     for (let item of this.items) {
-      if (item.name == 'Aged Brie') {
-        const agedBrie = new AgedBrie(item);
-        agedBrie.updateAgedBrie();
-      } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-        const backStagePass = new BackStagePass(item);
-        backStagePass.updateBackStagePass();
-      } else if(item.name.toLowerCase().indexOf('conjured') > -1) {
-        const conjuredItem = new ConjuredItem(item);
-        conjuredItem.updateConjuredItem();
-      } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
-        const sulfuras = new Sulfuras(item);
-        sulfuras.updateSulfuras();
-      } else {
-        const normalItem = new NormalItem(item);
-        normalItem.updateNormalItem();
-      }
+      const factory = new ItemFactory(item);
+      const newItem = factory.generateNewItem();
+      newItem.update();
     }
 
     return this.items;
