@@ -114,19 +114,17 @@ class Sulfuras {
 }
 
 class ItemFactory {
-  constructor(private _item) { }
-
-  generateNewItem() {
-    if (this._item.name == 'Aged Brie') {
-      return new AgedBrie(this._item);
-    } else if (this._item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      return new BackStagePass(this._item);
-    } else if(this._item.name.toLowerCase().indexOf('conjured') > -1) {
-      return new ConjuredItem(this._item);
-    } else if (this._item.name == 'Sulfuras, Hand of Ragnaros')  {
-      return new Sulfuras(this._item);
+  generateNewItem(item) {
+    if (item.name == 'Aged Brie') {
+      return new AgedBrie(item);
+    } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      return new BackStagePass(item);
+    } else if(item.name.toLowerCase().indexOf('conjured') > -1) {
+      return new ConjuredItem(item);
+    } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
+      return new Sulfuras(item);
     } else {
-      return new NormalItem(this._item);
+      return new NormalItem(item);
     }
   }
 }
@@ -139,9 +137,10 @@ export class GildedRose {
   }
 
   updateQuality() {
+    const factory = new ItemFactory();
+
     for (let item of this.items) {
-      const factory = new ItemFactory(item);
-      const newItem = factory.generateNewItem();
+      const newItem = factory.generateNewItem(item);
       newItem.update();
     }
 
