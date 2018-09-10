@@ -48,7 +48,6 @@ export class GildedRose {
     if (item.sellIn <= 0) {
       item.quality -= item.quality;
     }
-
   }
 
   updateConjuredManaCake(item) {
@@ -80,20 +79,16 @@ export class GildedRose {
     for (let item of this.items) {
       if (item.name == 'Aged Brie') {
         this.updateAgedBrie(item);
+      } else if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+        this.updateBackStagePasses(item);
+        this.decreaseSellInByOne(item);
+      } else if(item.name == 'Conjured Mana Cake') {
+        this.updateConjuredManaCake(item);
+        this.decreaseSellInByOne(item);
+      } else if (item.name == 'Sulfuras, Hand of Ragnaros')  {
+        // do nothing
       } else {
-        if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-          this.updateBackStagePasses(item);
-        } else {
-          // checking quality for everytinng EXCEPT aged brie and backstage passes
-          if(item.name == 'Conjured Mana Cake') {
-            this.updateConjuredManaCake(item);
-          } else {
-            if (item.name != 'Sulfuras, Hand of Ragnaros')  {
-              this.updateNormalItem(item);
-            }
-          }
-        }
-
+        this.updateNormalItem(item);
         this.decreaseSellInByOne(item);
       }
     }
