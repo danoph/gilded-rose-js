@@ -1,13 +1,13 @@
 # Running the app
 
-Run `yarn install` to install jasmine. Run `yarn test` to run the tests.
+Run `yarn install` to install dependencies. Run `yarn test` to run the tests.
 
-# Challenge:
+# Challenge
 
-Read through all of the Game Instructions below. Make sure you understand them before starting.
-Refactor the code in gilded.rose.ts without breaking the tests.
-Don't look for solutions to this exact problem online.
-Notice below that you cannot alter the Item class or the items property on the GildedRose class (but you can extend/build on top of them). You can also add new files if you need to organize things.
+- Read through all of the Game Instructions below. Make sure you understand them before starting.
+- Refactor the code in gilded.rose.ts without breaking the tests.
+- Don't look for solutions to this exact problem online.
+- Notice below that you cannot alter the Item class or the items property on the GildedRose class (but you can extend/build on top of them). You can also add new files if you need to organize things.
 
 I often use this problem in 1 hour coding inteviews and am looking for the following techniques:
   - being able to recognize code smells like the ridiculous amount of nested if statements in this example.
